@@ -66,6 +66,7 @@ this.createjs = this.createjs||{};
 	/**
 	 * @property priority
 	 * @protected
+	 * @type {Number}
 	 * @static
 	 **/
 	MotionGuidePlugin.priority = 0; // high priority, should run sooner
@@ -74,6 +75,7 @@ this.createjs = this.createjs||{};
 	 * Installs this plugin for use with TweenJS. Call this once after TweenJS is loaded to enable this plugin.
 	 * @method install
 	 * @static
+	 * @return {Object}
 	 **/
 	MotionGuidePlugin.install = function() {
 		createjs.Tween.installPlugin(MotionGuidePlugin, ["guide", "x", "y", "rotation"]);
@@ -83,7 +85,11 @@ this.createjs = this.createjs||{};
 	/**
 	 * @method init
 	 * @protected
+	 * @param {Tween} tween
+	 * @param {String} prop
+	 * @param {Object} value
 	 * @static
+	 * @return {*}
 	 **/
 	MotionGuidePlugin.init = function(tween, prop, value) {
 		var target = tween.target;
@@ -96,7 +102,13 @@ this.createjs = this.createjs||{};
 	/**
 	 * @method step
 	 * @protected
+	 * @param {Tween} tween
+	 * @param {String} prop
+	 * @param {*} startValue
+	 * @param {*} endValue
+	 * @param {Object} injectProps
 	 * @static
+	 * @return {*}
 	 **/
 	MotionGuidePlugin.step = function(tween, prop, startValue, endValue, injectProps) {
 		if(prop != "guide"){ return endValue; }
@@ -147,7 +159,21 @@ this.createjs = this.createjs||{};
 	/**
 	 * @method tween
 	 * @protected
+	 * @param {Tween} tween The related tween instance.
+	 * @param {String} prop The name of the property being tweened.
+	 * @param {Object} value The current tweened value of the property, as calculated by TweenJS.
+	 * @param {*} startValues A hash of all of the property values at the start of the current
+	 * step. You could access the start value of the current property using
+	 * startValues[prop].
+	 * @param {*} endValues A hash of all of the property values at the end of the current
+	 * step.
+	 * @param {Number} ratio A value indicating the eased progress through the current step. This
+	 * number is generally between 0 and 1, though some eases will generate values outside
+	 * this range.
+	 * @param {Boolean} wait Indicates whether the current step is a "wait" step.
+	 * @param {Boolean} end Indicates that the tween has reached the end.
 	 * @static
+	 * @return {*}
 	 **/
 	MotionGuidePlugin.tween = function(tween, prop, value, startValues, endValues, ratio, wait, end) {
 		var data = endValues.guide;
@@ -166,9 +192,9 @@ this.createjs = this.createjs||{};
 	/**
 	 * Determine the appropriate x/y/rotation information about a path for a given ratio along the path.
 	 * Assumes a path object with all optional parameters specified.
-	 * @param data Data object you would pass to the "guide:" property in a Tween
-	 * @param ratio 0-1 Distance along path, values outside 0-1 are "best guess"
-	 * @param target Object to copy the results onto, will use a new object if not supplied.
+	 * @param {Object} data Data object you would pass to the "guide:" property in a Tween
+	 * @param {Number} ratio 0-1 Distance along path, values outside 0-1 are "best guess"
+	 * @param {Object} target Object to copy the results onto, will use a new object if not supplied.
 	 * @return {Object} The target object or a new object w/ the tweened properties
 	 * @static
 	 */

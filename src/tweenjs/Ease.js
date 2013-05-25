@@ -58,6 +58,7 @@ var Ease = function() {
 // public static methods:
 	/** 
 	 * @method linear
+	 * @param {Number} t
 	 * @static
 	 **/
 	Ease.linear = function(t) { return t; }
@@ -72,7 +73,7 @@ var Ease = function() {
 	/** 
 	 * Mimics the simple -100 to 100 easing in Flash Pro.
 	 * @method get
-	 * @param amount A value from -1 (ease in) to 1 (ease out) indicating the strength and direction of the ease.
+	 * @param {Number} amount A value from -1 (ease in) to 1 (ease out) indicating the strength and direction of the ease.
 	 * @static
 	 **/
 	Ease.get = function(amount) {
@@ -88,7 +89,7 @@ var Ease = function() {
 	/** 
 	 * Configurable exponential ease.
 	 * @method getPowIn
-	 * @param pow The exponent to use (ex. 3 would return a cubic ease).
+	 * @param {Number} pow The exponent to use (ex. 3 would return a cubic ease).
 	 * @static
 	 **/
 	Ease.getPowIn = function(pow) {
@@ -101,7 +102,7 @@ var Ease = function() {
 	/** 
 	 * Configurable exponential ease.
 	 * @method getPowOut
-	 * @param pow The exponent to use (ex. 3 would return a cubic ease).
+	 * @param {Number} pow The exponent to use (ex. 3 would return a cubic ease).
 	 * @static
 	 **/
 	Ease.getPowOut = function(pow) {
@@ -114,7 +115,7 @@ var Ease = function() {
 	/** 
 	 * Configurable exponential ease.
 	 * @method getPowInOut
-	 * @param pow The exponent to use (ex. 3 would return a cubic ease).
+	 * @param {Number} pow The exponent to use (ex. 3 would return a cubic ease).
 	 * @static
 	 **/
 	Ease.getPowInOut = function(pow) {
@@ -195,6 +196,7 @@ var Ease = function() {
 	
 	/** 
 	 * @method sineIn
+	 * @param {Number} t
 	 * @static
 	 **/
 	Ease.sineIn = function(t) {
@@ -203,6 +205,7 @@ var Ease = function() {
 	
 	/** 
 	 * @method sineOut
+	 * @param {Number} t
 	 * @static
 	 **/
 	Ease.sineOut = function(t) {
@@ -211,6 +214,7 @@ var Ease = function() {
 	
 	/** 
 	 * @method sineInOut
+	 * @param {Number} t
 	 * @static
 	 **/
 	Ease.sineInOut = function(t) {
@@ -221,7 +225,7 @@ var Ease = function() {
 	/** 
 	 * Configurable "back in" ease.
 	 * @method getBackIn
-	 * @param amount The strength of the ease.
+	 * @param {Number} amount The strength of the ease.
 	 * @static
 	 **/
 	Ease.getBackIn = function(amount) {
@@ -238,7 +242,7 @@ var Ease = function() {
 	/** 
 	 * Configurable "back out" ease.
 	 * @method getBackOut
-	 * @param amount The strength of the ease.
+	 * @param {Number} amount The strength of the ease.
 	 * @static
 	 **/
 	Ease.getBackOut = function(amount) {
@@ -255,7 +259,7 @@ var Ease = function() {
 	/** 
 	 * Configurable "back in out" ease.
 	 * @method getBackInOut
-	 * @param amount The strength of the ease.
+	 * @param {Number} amount The strength of the ease.
 	 * @static
 	 **/
 	Ease.getBackInOut = function(amount) {
@@ -274,6 +278,7 @@ var Ease = function() {
 	
 	/** 
 	 * @method circIn
+	 * @param {Number} t
 	 * @static
 	 **/
 	Ease.circIn = function(t) {
@@ -282,6 +287,7 @@ var Ease = function() {
 	
 	/** 
 	 * @method circOut
+	 * @param {Number} t
 	 * @static
 	 **/
 	Ease.circOut = function(t) {
@@ -290,6 +296,7 @@ var Ease = function() {
 	
 	/** 
 	 * @method circInOut
+	 * @param {Number} t
 	 * @static
 	 **/
 	Ease.circInOut = function(t) {
@@ -299,6 +306,7 @@ var Ease = function() {
 	
 	/** 
 	 * @method bounceIn
+	 * @param {Number} t
 	 * @static
 	 **/
 	Ease.bounceIn = function(t) {
@@ -307,6 +315,7 @@ var Ease = function() {
 	
 	/** 
 	 * @method bounceOut
+	 * @param {Number} t
 	 * @static
 	 **/
 	Ease.bounceOut = function(t) {
@@ -323,6 +332,7 @@ var Ease = function() {
 	
 	/** 
 	 * @method bounceInOut
+	 * @param {Number} t
 	 * @static
 	 **/
 	Ease.bounceInOut = function(t) {
@@ -334,11 +344,11 @@ var Ease = function() {
 	/** 
 	 * Configurable elastic ease.
 	 * @method getElasticIn
-	 * @param amplitude
-	 * @param period
+	 * @param {Number} amplitude
+	 * @param {Number} period
 	 * @static
 	 **/
-	Ease.getElasticIn = function(amplitude,period) {
+	Ease.getElasticIn = function(amplitude, period) {
 		var pi2 = Math.PI*2;
 		return function(t) {
 			if (t==0 || t==1) return t;
@@ -355,11 +365,11 @@ var Ease = function() {
 	/** 
 	 * Configurable elastic ease.
 	 * @method getElasticOut
-	 * @param amplitude
-	 * @param period
+	 * @param {Number} amplitude
+	 * @param {Number} period
 	 * @static
 	 **/
-	Ease.getElasticOut = function(amplitude,period) {
+	Ease.getElasticOut = function(amplitude, period) {
 		var pi2 = Math.PI*2;
 		return function(t) {
 			if (t==0 || t==1) return t;
@@ -376,11 +386,11 @@ var Ease = function() {
 	/** 
 	 * Configurable elastic ease.
 	 * @method getElasticInOut
-	 * @param amplitude
-	 * @param period
+	 * @param {Number} amplitude
+	 * @param {Number} period
 	 * @static
 	 **/
-	Ease.getElasticInOut = function(amplitude,period) {
+	Ease.getElasticInOut = function(amplitude, period) {
 		var pi2 = Math.PI*2;
 		return function(t) {
 			var s = period/pi2 * Math.asin(1/amplitude);

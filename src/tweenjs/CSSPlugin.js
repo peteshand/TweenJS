@@ -61,6 +61,7 @@ var CSSPlugin = function() {
 	/**
 	 * @property priority
 	 * @protected
+	 * @type {Number}
 	 * @static
 	 **/
 	CSSPlugin.priority = -100; // very low priority, should run last
@@ -80,7 +81,11 @@ var CSSPlugin = function() {
 	/**
 	 * @method init
 	 * @protected
+	 * @param {Tween} tween
+	 * @param {String} prop
+	 * @param {Object} value
 	 * @static
+	 * @return {*}
 	 **/
 	CSSPlugin.init = function(tween, prop, value) {
 		var sfx0,sfx1,style,map = CSSPlugin.cssSuffixMap;
@@ -98,6 +103,11 @@ var CSSPlugin = function() {
 	/**
 	 * @method step
 	 * @protected
+	 * @param {Tween} tween
+	 * @param {String} prop
+	 * @param {*} startValue
+	 * @param {*} endValue
+	 * @param {Object} injectProps
 	 * @static
 	 **/
 	CSSPlugin.step = function(tween, prop, startValue, endValue, injectProps) {
@@ -108,7 +118,21 @@ var CSSPlugin = function() {
 	/**
 	 * @method tween
 	 * @protected
+	 * @param {Tween} tween The related tween instance.
+	 * @param {String} prop The name of the property being tweened.
+	 * @param {Object} value The current tweened value of the property, as calculated by TweenJS.
+	 * @param {*} startValues A hash of all of the property values at the start of the current
+	 * step. You could access the start value of the current property using
+	 * startValues[prop].
+	 * @param {*} endValues A hash of all of the property values at the end of the current
+	 * step.
+	 * @param {Number} ratio A value indicating the eased progress through the current step. This
+	 * number is generally between 0 and 1, though some eases will generate values outside
+	 * this range.
+	 * @param {Boolean} wait Indicates whether the current step is a "wait" step.
+	 * @param {Boolean} end Indicates that the tween has reached the end.
 	 * @static
+	 * @return {*}
 	 **/
 	CSSPlugin.tween = function(tween, prop, value, startValues, endValues, ratio, wait, end) {
 		var style,map = CSSPlugin.cssSuffixMap;
